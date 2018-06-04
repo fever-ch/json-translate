@@ -15,7 +15,7 @@ RUN sbt compile
 ADD . /build
 RUN sbt jsontranslate/assembly
 
-FROM openjdk:8
+FROM openjdk:8-jre-alpine
 COPY --from=0 /build/app/target/jsontranslate*assembly*.jar /jsontranslate.jar
 ENTRYPOINT ["java", "-jar", "/jsontranslate.jar"]
 
