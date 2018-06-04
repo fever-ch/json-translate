@@ -1,6 +1,4 @@
-
-
-val scalaTest = "org.scalatest" %% "scalatest" % "3.0.1"
+val scalaTest = "org.scalatest" %% "scalatest" % "3.0.5"
 
 val googleCloudTranslate = "com.google.cloud" % "google-cloud-translate" % "1.32.0"
 
