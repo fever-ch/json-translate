@@ -1,7 +1,7 @@
 FROM hseeberger/scala-sbt
 
 # extra layer to avoid re-install of SBT 1.1.6
-RUN sbt -sbt-version 1.1.6
+RUN sbt -sbt-version 1.1.6 ""
 
 RUN mkdir /build
 WORKDIR /build
