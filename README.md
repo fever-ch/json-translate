@@ -10,9 +10,9 @@ Nowadays, it's quite common to store text content of a website in JSON format. T
 
 Currently, this piece of software works only using the Google Translate API. This API isn't free, but it works pretty well, and it is relatively cheap.
  
-About the "cheapness" of Google Translate, the current pricing is 20$ for 1'000'000 characters.
-- about 66$ to translate Emile Zola's masterpiece "Les Misérables" 
-- about 9$ to translate J. K. Rowling's best-seller "Harry Potter and the Sorcerer's Stone")
+About the "cheapness" of Google Translate, the current pricing is $20 for 1'000'000 characters.
+- about $66 to translate Emile Zola's masterpiece "Les Misérables" 
+- about $9 to translate J. K. Rowling's best-seller "Harry Potter and the Sorcerer's Stone")
 .
 
 *Hence, if you plan to write a best-seller/masterpiece, it might be valuable/recommended to contact a renowned translation agency ;-)*
@@ -30,23 +30,50 @@ Requirements:
 - [Java](https://www.java.com/en/) 
 - [Sbt](https://www.scala-sbt.org/) 
 
-Build the program
+Build the program:
 
     sbt jsontranslate/assembly 
-    
-Run it:
 
-    GOOGLE_API_KEY=<YOUR_GOOGLE_API_KEY> NO_GCE_CHECK=True java -jar app/target/jsontranslate*assembly*.jar -i content.json -o content-fr.json -m en -n fr 
+Estimate the cost of translating `content.json`:
+    
+    java -jar app/target/jsontranslate*assembly*.jar forecast -i content.json
+
+List availables languages available for translations:
+
+    GOOGLE_API_KEY=<YOUR_GOOGLE_API_KEY> NO_GCE_CHECK=True java -jar app/target/jsontranslate*assembly*.jar list 
+
+    
+Translate `content.json` from English to French:
+
+    GOOGLE_API_KEY=<YOUR_GOOGLE_API_KEY> NO_GCE_CHECK=True java -jar app/target/jsontranslate*assembly*.jar translate -i content.json -o content-fr.json -m en -n fr 
+
+Get help:
+
+    java -jar app/target/jsontranslate*assembly*.jar -h
+
 
 ### Use it with Docker
 
 Requirements: 
 - [Docker](https://www.docker.com/get-docker)
  
-Run it:
+  
+Estimate the cost of translating `content.json`:
 
-    docker run -i --rm -e NO_GCE_CHECK=True -e GOOGLE_API_KEY=<YOUR_GOOGLE_API_KEY> feverch/json-translate -m en -n fr < content.json > content-fr.json
+    docker run -i --rm feverch/json-translate forecast < content.json
 
+List availables languages available for translations:
+    
+    docker run -i --rm -e NO_GCE_CHECK=True -e GOOGLE_API_KEY=<YOUR_GOOGLE_API_KEY> feverch/json-translate forecast < content.json
+
+Translate `content.json` from English to French:
+
+    docker run -i --rm -e NO_GCE_CHECK=True -e GOOGLE_API_KEY=<YOUR_GOOGLE_API_KEY> feverch/json-translate translate -m en -n fr < content.json > content-fr.json
+
+Get help:
+
+    docker run -i --rm feverch/json-translate -h
+    
 ## License
  
 This software is licensed under the Apache 2 license, quoted below.
