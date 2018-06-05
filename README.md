@@ -49,7 +49,7 @@ Translate `content.json` from English to French:
 
 Get help:
 
-    java -jar app/target/jsontranslate*assembly*.jar -h
+    java -jar app/target/jsontranslate*assembly*.jar help
 
 
 ### Use it with Docker
@@ -72,7 +72,7 @@ Translate `content.json` from English to French:
 
 Get help:
 
-    docker run -i --rm feverch/json-translate -h
+    docker run -i --rm feverch/json-translate help
     
 ## License
  
